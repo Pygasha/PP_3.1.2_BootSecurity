@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME PAGE</title>
+</head>
+<body>
+Стартовая страница
+
+<!--<a href="auth/registration"> Зарегистрироваться</a>>-->
+<br/>
+<br/>
+<form th:action="@{/auth/login}" th:method="GET">
+    <input type="submit"value="Войти"/>
+</form>
+
+<br/>
+
+<form th:action="@{/auth/registration}" th:method="POST">
+    <input type="submit"value="Зарегистрироваться"/>
+</form>
+
+</body>
+</html>

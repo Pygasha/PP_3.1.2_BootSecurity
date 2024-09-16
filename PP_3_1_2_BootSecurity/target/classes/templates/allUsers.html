@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<h2>
+    All Users
+</h2>
+<br>
+<table bgcolor="#000000">
+    <thead>
+    <tr bgcolor="#ffffff">
+        <th>Id</th>
+        <th>Username</th>
+        <th>Year of birth</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Roles</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr bgcolor="#ffffff" th:each="user, iterStat : ${allUsers}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getYearOfBirth()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getHiddenPassword()}"></td>
+        <td th:text="${user.getRole()}"></td>
+
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <form th:method="GET" th:action="@{/admin/edit}" th:object="${user}">
+                            <input type="submit" value="Edit"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:method="POST" th:action="@{/admin/delete}" th:object="${user}">
+                            <input type="submit" value="Delete"/>
+                            <input type="hidden" name="id" th:value="${user.getId()}"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<form th:method="GET" th:action="@{/admin/addNewUser}">
+    <input type="submit" value="Add"/>
+</form>
+
+<br/>
+
+<form th:method="GET" th:action="@{/admin}">
+    <input type="submit" value="Back to admin"/>
+</form>
+
+</body>
+</html>
+
+
+
+<!--<div class="m-3">-->
+<!--    <div class="form-group row">-->
+<!--        <label class="col-4 col-form-label">Username: </label>-->
+<!--        <div class="col-8">-->
+<!--            <input type="username" th:field="*{username}" class="form-control" required/>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="m-3">-->
+<!--        <div class="form-group row">-->
+<!--            <label class="col-4 col-form-label">Year of birth: </label>-->
+<!--            <div class="col-8">-->
+<!--                <input type="yearOfBirth" th:field="*{yearOfBirth}" class="form-control" required/>-->
+<!--            </div>-->
+<!--        </div>-->
